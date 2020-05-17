@@ -3,13 +3,18 @@ import axios from "axios";
 import Link from "next/link";
 import withAnalytics from "../src/hocs/withAnalytics";
 
-const User = ({ repos }) => {
+const User = ({ users }) => {
   return (
     <>
       <div>
         <ul>
-          {repos.map((repo) => (
-            <li key={repo.id}>{repo.name}</li>
+          {users.map((user) => (
+            <li key={user.id}>
+              {user.login}
+              <Link href={`/users/${user.login}`}>
+                <a> | Acessar Perfil</a>
+              </Link>
+            </li>
           ))}
         </ul>
         <Link href="/">
@@ -22,10 +27,10 @@ const User = ({ repos }) => {
 
 User.getInitialProps = async () => {
   const response = await axios.get(
-    "https://api.github.com/users/jaksonlima/repos"
+    "https://api.github.com/orgs/rocketseat/members"
   );
 
-  return { repos: response.data };
+  return { users: response.data };
 };
 
 export default withAnalytics()(User);

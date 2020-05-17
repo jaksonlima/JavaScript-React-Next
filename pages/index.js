@@ -10,9 +10,10 @@ function Home() {
         <Head>
           <title>Users</title>
         </Head>
-        <img src="/static/shang.jpg" width="200" />
 
         <h1>Hello Word</h1>
+
+        <img src="public/city.png" />
 
         <Link href="/users">
           <a>Voltar</a>
